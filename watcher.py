@@ -17,7 +17,7 @@ class EventHandler(FileSystemEventHandler):
         self.move_files()
     
     def move_files(self):
-        for file in os.listdir(watch_path):
+        for file in os.listdir(self.watch_path):
             filename, file_extension = os.path.splitext(file)
             file_extension = file_extension.lower()
 
@@ -25,12 +25,13 @@ class EventHandler(FileSystemEventHandler):
                 continue
 
             new_location = get_new_file_location(filename, file_extension, self.destination_root)
+            os.rename(f"{self.watch_path}\\{file}", new_location)
+            
+            print("")
+            print(f"Moved '{self.watch_path}\\{file}' to '{new_location}'")
 
-            os.rename(f"{watch_path}\\{file}", new_location)
-            print(f"Moved '{watch_path}\\{file}' to '{new_location}'")
 
-
-if __name__ == "__main__":
+def main():
     watch_path = "C:\\Users\\thebr\\Downloads"
     destination_root = "C:\\Users\\thebr\\Downloads"
     event_handler = EventHandler(
@@ -49,3 +50,7 @@ if __name__ == "__main__":
         observer.stop()
         
     observer.join()
+
+
+if __name__ == "__main__":
+    main()
