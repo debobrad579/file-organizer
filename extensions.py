@@ -21,19 +21,22 @@ extensions = {
     ".jar": "Executables",
     ".wsf": "Executables",
 # Folders
-    ".7z": "Folders\\Compressed Folders",
-    ".arj": "Folders\\Compressed Folders",
-    ".deb": "Folders\\Compressed Folders",
-    ".pkg": "Folders\\Compressed Folders",
-    ".rar": "Folders\\Compressed Folders",
-    ".rpm": "Folders\\Compressed Folders",
-    ".z": "Folders\\Compressed Folders",
-    ".zip": "Folders\\Compressed Folders",
-    "": "Folders\\Extracted Folders",
+    ".7z": "Folders/Compressed Folders",
+    ".arj": "Folders/Compressed Folders",
+    ".deb": "Folders/Compressed Folders",
+    ".pkg": "Folders/Compressed Folders",
+    ".rar": "Folders/Compressed Folders",
+    ".rpm": "Folders/Compressed Folders",
+    ".z": "Folders/Compressed Folders",
+    ".zip": "Folders/Compressed Folders",
+    "": "Folders/Extracted Folders",
 # Images
     ".ai": "Images",
     ".bmp": "Images",
+    ".cr2": "Images",
     ".gif": "Images",
+    ".ico": "Images",
+    ".icns": "Images",
     ".jpg": "Images",
     ".jpeg": "Images",
     ".png": "Images",
@@ -42,7 +45,7 @@ extensions = {
     ".svg": "Images",
     ".tif": "Images",
     ".tiff": "Images",
-    ".cr2": "Images",
+    ".webp": "Images",
 # Text
     ".txt": "Text",
     ".doc": "Text",
@@ -63,7 +66,6 @@ extensions = {
     ".pps": "Text",
     ".ppt": "Text",
     ".pptx": "Text",
-    ".ico": "Text",
     ".ods": "Text",
     ".xlr": "Text",
     ".xls": "Text",
@@ -86,8 +88,10 @@ extensions = {
     ".wmv": "Videos"
 }
 
-download_extensions = [".download", ".crdownload", ".tmp"]
+download_extensions = [".download", ".crdownload", ".tmp", ".ini"]
 subfolder_roots = ["Audio", "Executables", "Folders", "Images", "Other", "Text", "Videos"]
+watch_path = "/home/debobrad579/Downloads"
+destination_root = "/home/debobrad579/Downloads"
 
 
 def get_subfolder_root(file_extension):

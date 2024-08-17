@@ -1,12 +1,15 @@
-from datetime import date
+from datetime import datetime
+from time import ctime
 import os
 
-from extensions import get_subfolder_root
+from extensions import get_subfolder_root, watch_path, destination_root, subfolder_roots, download_extensions
 from months import months
 
 
-def get_month_folder(root):
-    destination = f"{root}\\{date.today().year}\\{months[str(date.today().month)]}"
+def get_month_folder(root, file_path):
+    date_of_created = datetime.strptime(ctime(os.path.getmtime(file_path)), "%a %b %d %H:%M:%S %Y")
+    print(date_of_created)
+    destination = f"{root}/{date_of_created.year}/{months[str(date_of_created.month)]}"
 
     if not os.path.exists(destination):
         os.makedirs(destination)
@@ -19,7 +22,7 @@ def rename_file_if_exists(location, filename, file_extension):
     new_filename = filename
 
     while True:
-        if not os.path.exists(f"{location}\\{new_filename}{file_extension}"):
+        if not os.path.exists(f"{location}/{new_filename}{file_extension}"):
             break
         
         file_number += 1
@@ -28,8 +31,18 @@ def rename_file_if_exists(location, filename, file_extension):
     return new_filename
 
 
-def get_new_file_location(filename, file_extension, destination_root):
-    destination = get_month_folder(f"{destination_root}\\{get_subfolder_root(file_extension)}")
-    filename = rename_file_if_exists(destination, filename, file_extension)
+def move_files():
+    for file in os.listdir(watch_path):
+        file_path = f"{watch_path}/{file}"
+        filename, file_extension = os.path.splitext(file)
+        file_extension = file_extension.lower()
 
-    return f"{destination}\\{filename}{file_extension}"
+        if file in subfolder_roots or file_extension in download_extensions or filename == ".com.google.Chrome":
+            continue
+            
+        destination = get_month_folder(f"{destination_root}/{get_subfolder_root(file_extension)}", file_path)
+        new_filename = rename_file_if_exists(destination, filename, file_extension)
+        new_file_path = f"{destination}/{new_filename}{file_extension}"
+        os.rename(file_path, new_file_path)
+
+        print(f"Moved '{file_path}' to '{new_file_path}'")
