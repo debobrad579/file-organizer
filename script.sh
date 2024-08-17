@@ -1,0 +1,1 @@
+nohup /home/debobrad579/Documents/Programming/Python/Passion-Projects/File-Organizer/env/bin/python3.12 /home/debobrad579/Documents/Programming/Python/Passion-Projects/File-Organizer/watcher.py > /home/debobrad579/Documents/Programming/Python/Passion-Projects/File-Organizer/output.log 2>&1 &
