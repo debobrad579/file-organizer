@@ -88,7 +88,7 @@ extensions = {
     ".wmv": "Videos"
 }
 
-download_extensions = [".download", ".crdownload", ".tmp", ".ini"]
+download_extensions = [".download", ".crdownload", ".tmp", ".ini", ".part"]
 subfolder_roots = ["Audio", "Executables", "Folders", "Images", "Other", "Text", "Videos"]
 watch_path = "/home/debobrad579/Downloads"
 destination_root = "/home/debobrad579/Downloads"

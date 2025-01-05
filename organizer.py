@@ -37,7 +37,7 @@ def move_files():
         filename, file_extension = os.path.splitext(file)
         file_extension = file_extension.lower()
 
-        if file in subfolder_roots or file_extension in download_extensions or filename == ".com.google.Chrome":
+        if file in subfolder_roots or file_extension in download_extensions or filename == ".com.google.Chrome" or os.stat(file_path).st_size == 0:
             continue
             
         destination = get_month_folder(f"{destination_root}/{get_subfolder_root(file_extension)}", file_path)
